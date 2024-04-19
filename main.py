@@ -8,7 +8,7 @@ def main():
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
         # To read file as bytes:
-        st.write(f"filename: {uploaded_file.name}, size: {uploaded_file.size}")
+        st.json(f"filename: {uploaded_file.name}, size: {uploaded_file.size}")
         bytes_data = uploaded_file.getvalue()
         cv = Converter(stream=bytes_data)
         out_stream = BytesIO()
