@@ -3,7 +3,6 @@ from pdf2docx import Converter
 from io import BytesIO
 import tabula
 import pandas as pd
-import os
 
 def checkType(type):
     if (type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"):
@@ -48,6 +47,7 @@ def main():
                 ('Select conversion','pdf to docx', 'pdf to xlsx')
             )
             if (answer == 'pdf to docx'):
+                st.write(f"The option: {answer} has been chosen. Please wait for the conversion to take place")
                 bytes_data = uploaded_file.getvalue()
                 cv = Converter(stream=bytes_data)
                 out_stream = BytesIO()
@@ -61,6 +61,7 @@ def main():
                     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                 )
             elif (answer == 'pdf to xlsx'):
+                st.write(f"The option: {answer} has been chosen. Please wait for the conversion to take place")
                 with open("sample.pdf", 'wb') as f:
                     f.write(uploaded_file.getvalue())
                 pdf_to_excel("sample.pdf", "sample.xlsx")
@@ -71,5 +72,6 @@ def main():
                         file_name='sample.xlsx',
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     )  # Defaults to 'application/octet-stream'
-
+        else:
+            st.error("This is an invalid file")
 main()
