@@ -3,7 +3,7 @@ from pdf2docx import Converter
 from io import BytesIO
 import tabula
 import pandas as pd
-from streamlit.components.v1 import components
+import streamlit.components.v1 as components
 
 def addAds():
     html_file = open("test.html", "r", encoding='utf-8')
