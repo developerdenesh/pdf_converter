@@ -3,6 +3,13 @@ from pdf2docx import Converter
 from io import BytesIO
 import tabula
 import pandas as pd
+from streamlit.components.v1 import components
+
+def addAds():
+    html_file = open("test.html", "r", encoding='utf-8')
+    source_code = html_file.read()
+    print(source_code)
+    components.html(source_code, height=600)
 
 def checkType(type):
     if (type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"):
@@ -74,4 +81,5 @@ def main():
                     )  # Defaults to 'application/octet-stream'
         else:
             st.error("This is an invalid file")
+addAds()
 main()
